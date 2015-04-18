@@ -3,11 +3,7 @@
 return array(
     'service_manager' => array(
         'invokables' => array(
-            'Blog\Service\PostServiceInterface' => 'Blog\Service\PostService',
-            'PostServiceInitializer' => 'Blog\Service\PostServiceInitializer'
-        ),
-        'initializers' => array(
-            'PostServiceInit' => 'Blog\Service\PostServiceInitializer'
+            'Blog\Service\PostServiceInterface' => 'Blog\Service\PostService'
         )
     ),
     'view_manager' => array(
@@ -18,6 +14,9 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Blog\Controller\List' => 'Blog\Controller\ListController'
+        ),
+        'initializers' => array(
+            'PostServiceInit' => 'Blog\Service\PostServiceInitializer'
         )
     ),
     'router' => array(

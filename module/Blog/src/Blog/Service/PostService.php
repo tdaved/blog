@@ -52,7 +52,7 @@ class PostService implements PostServiceInterface {
     
     /**
      * 
-     * @param \Blog\Model\Post $id
+     * @param $id
      * @return Post
      */
     public function findPost($id) {

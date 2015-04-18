@@ -11,7 +11,7 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 class PostServiceInitializer implements InitializerInterface {
     public function initialize($instance, ServiceLocatorInterface $serviceLocator) {
         if($instance instanceof PostServiceAwareInterface) {
-            $instance->setPostService($serviceLocator->get('Blog\Service\PostServiceInterface'));
+            $instance->setPostService($serviceLocator->getServiceLocator()->get('Blog\Service\PostServiceInterface'));
         }
     }
 }

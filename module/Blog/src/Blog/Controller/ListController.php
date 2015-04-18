@@ -22,8 +22,7 @@ class ListController extends AbstractActionController implements PostServiceAwar
         ));
     }
 
-    /*
-     * (non-PHPdoc)
+    /**
      * @see \Blog\Service\PostServiceAwareInterface::getPostService()
      * @return PostServiceInterface
      */
@@ -31,8 +30,7 @@ class ListController extends AbstractActionController implements PostServiceAwar
         return $this->postService;
     }
 
-    /*
-     * (non-PHPdoc)
+    /**
      * @see \Blog\Service\PostServiceAwareInterface::setPostService()
      * @param PostServiceInterface $service
      */
