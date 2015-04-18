@@ -36,6 +36,10 @@ class PostService implements PostServiceInterface {
          )
      );
     
+    /**
+     * 
+     * @return array[Post]
+     */
     public function findAllPosts() {
         $allPosts = array();
         
@@ -46,6 +50,11 @@ class PostService implements PostServiceInterface {
         return $allPosts;
     }
     
+    /**
+     * 
+     * @param \Blog\Model\Post $id
+     * @return Post
+     */
     public function findPost($id) {
         $postData = $this->data[$id];
         

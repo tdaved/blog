@@ -6,6 +6,12 @@ namespace Blog\Service;
  * @author David
  */
 interface PostServiceAwareInterface {
+    /**
+     * @return PostServiceInterface
+     */
     public function getPostService();
-    public function setPostService(PostService $service);
+    /**
+     * @param PostServiceInterface $service
+     */
+    public function setPostService(PostServiceInterface $service);
 }

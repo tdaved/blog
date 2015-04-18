@@ -7,7 +7,7 @@ return array(
             'PostServiceInitializer' => 'Blog\Service\PostServiceInitializer'
         ),
         'initializers' => array(
-            'PostServiceInit' => 'PostServiceInitializer'
+            'PostServiceInit' => 'Blog\Service\PostServiceInitializer'
         )
     ),
     'view_manager' => array(
@@ -17,7 +17,7 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Blog\Controller\List' => 'Blog\Factory\ListControllerFactory'
+            'Blog\Controller\List' => 'Blog\Controller\ListController'
         )
     ),
     'router' => array(
