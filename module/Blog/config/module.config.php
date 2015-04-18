@@ -5,6 +5,9 @@ return array(
         'invokables' => array(
             'Blog\Service\PostServiceInterface' => 'Blog\Service\PostService'
         ),
+        'initializers' => array(
+            'PostServiceInit' => 'PostServiceInitializer'
+        )
     ),
     'view_manager' => array(
         'template_path_stack' => array(
@@ -12,9 +15,7 @@ return array(
         )
     ),
     'controllers' => array(
-        'factories' => array(
-            'Blog\Controller\List' => 'Blog\Factory\ListControllerFactory'
-        )
+        
     ),
     'router' => array(
         'routes' => array(

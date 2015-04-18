@@ -7,7 +7,7 @@ use Blog\Model\Post;
 /**
  * @author David
  */
-class PostService implements PostServiceInterface {
+class PostService implements PostServiceInterface, PostServiceAwareInterface {
     protected $data = array(
          array(
              'id'    => 1,
@@ -35,6 +35,14 @@ class PostService implements PostServiceInterface {
              'text'  => 'This is our fifth blog post!'
          )
      );
+    
+    public function getPostService() {
+        ;
+    }
+    
+    public function setPostService(PostService $service) {
+        ;
+    }
     
     public function findAllPosts() {
         $allPosts = array();
