@@ -1,1 +1,12 @@
-<h1>Blog\ListController::indexAction()</h1>
+<h1>Blog</h1>
+
+<?php foreach ($this->posts as $post) : ?>
+<article id="post-<?= $post->getId() ?>" class="panel panel-default">
+    <div class="panel-heading">
+        <strong><?= $post->getTitle() ?></strong>
+    </div>
+    <div class="panel-body">
+        <p><?= $post->getText() ?></p>
+    </div>
+</article>
+<?php endforeach; ?>
