@@ -3,7 +3,8 @@
 return array(
     'service_manager' => array(
         'invokables' => array(
-            'Blog\Service\PostServiceInterface' => 'Blog\Service\PostService'
+            'Blog\Service\PostServiceInterface' => 'Blog\Service\PostService',
+            'Zend\ServiceManager\InitializerInterface' => 'Blog\Service\PostServiceInitializer' 
         ),
         'initializers' => array(
             'PostServiceInit' => 'PostServiceInitializer'
@@ -15,7 +16,9 @@ return array(
         )
     ),
     'controllers' => array(
-        
+        'invokables' => array(
+            'Blog\Controller\List' => 'Blog\Factory\ListControllerFactory'
+        )
     ),
     'router' => array(
         'routes' => array(
