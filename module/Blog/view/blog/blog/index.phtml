@@ -8,5 +8,9 @@
     <div class="panel-body">
         <p><?= $post->getContent() ?></p>
     </div>
+    <div class="panel-footer clearfix">
+        <div class="pull-left"><strong>Published:</strong> <?= $post->getDate()->format('Y.m.d. H:i'); ?></div>
+        <div class="pull-right"><a href="<?php echo $this->basePath() . '/blog/' . $post->getId(); ?>">View</a></div>
+    </div>
 </article>
 <?php endforeach; ?>

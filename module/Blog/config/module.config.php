@@ -8,28 +8,65 @@ return array(
             'Blog\Service\PostServiceInterface' => 'Blog\Service\PostService'
         )
     ),
-    'view_manager' => array(
-        'template_path_stack' => array(
-            __DIR__ . '/../view',
-        )
-    ),
     'controllers' => array(
         'invokables' => array(
-            'Blog\Controller\List' => 'Blog\Controller\ListController'
+            'Blog\Controller\Blog' => 'Blog\Controller\BlogController',
+            'Blog\Controller\Post' => 'Blog\Controller\PostController'
         ),
         'initializers' => array(
             'PostServiceInit' => 'Blog\Service\PostServiceInitializer'
         )
     ),
+    'view_manager' => array(
+        'template_path_stack' => array(
+            __DIR__ . '/../view',
+        )
+    ),
     'router' => array(
         'routes' => array(
-            'post' => array(
+            'blog' => array(
                 'type' => 'literal',
                 'options' => array(
                     'route' => '/blog',
                     'defaults' => array(
-                        'controller' => 'Blog\Controller\List',
+                        'controller' => 'Blog\Controller\Blog',
                         'action' => 'index',
+                    )
+                )
+            ),
+            'post' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/blog/:id',
+                    'constraints' => array(
+                        'id' => '[0-9]+'
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Blog\Controller\Post',
+                        'action' => 'post'
+                    )
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'edit' => array(
+                        'type' => 'literal',
+                        'options' => array(
+                            'route' => '/edit',
+                            'defaults' => array(
+                                'controller' => 'Blog\Controller\Post',
+                                'action' => 'edit',
+                            )
+                        )
+                    )
+                )
+            ),
+            'create' => array(
+                'type' => 'literal',
+                'options' => array(
+                    'route' => '/blog/create',
+                    'defaults' => array(
+                        'controller' => 'Blog\Controller\Post',
+                        'action' => 'create',
                     )
                 )
             )

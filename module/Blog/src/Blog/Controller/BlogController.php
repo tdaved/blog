@@ -10,7 +10,7 @@ use Zend\View\Model\ViewModel;
  *
  * @author David
  */
-class ListController extends AbstractActionController implements PostServiceAwareInterface {
+class BlogController extends AbstractActionController implements PostServiceAwareInterface {
     /**
      * @var PostServiceInterface
      */
@@ -20,7 +20,6 @@ class ListController extends AbstractActionController implements PostServiceAwar
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
         $data = $em->getRepository('Blog\Entity\Posts')->findAll();
         return new ViewModel(array(
-            //'posts' => $this->postService->findAllPosts(),
             'posts' => $data
         ));
     }

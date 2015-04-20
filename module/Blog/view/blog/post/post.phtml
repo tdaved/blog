@@ -1,0 +1,10 @@
+<h1><?= $post->getTitle(); ?></h1>
+
+<article id="post-<?= $post->getId() ?>" class="panel panel-default">
+    <div class="panel-body">
+        <p><?= $post->getContent() ?></p>
+    </div>
+    <div class="panel-footer">
+        <span><strong>Published:</strong> <?= $post->getDate()->format('Y.m.d. H:i'); ?></span>
+    </div>
+</article>
