@@ -17,8 +17,11 @@ class ListController extends AbstractActionController implements PostServiceAwar
     protected $postService;
 
     public function indexAction() {
+        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
+        $data = $em->getRepository('Blog\Entity\Posts')->findAll();
         return new ViewModel(array(
-            'posts' => $this->postService->findAllPosts()
+            //'posts' => $this->postService->findAllPosts(),
+            'posts' => $data
         ));
     }
 
