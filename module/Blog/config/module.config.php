@@ -25,9 +25,9 @@ return array(
     'router' => array(
         'routes' => array(
             'blog' => array(
-                'type' => 'literal',
+                'type' => 'segment',
                 'options' => array(
-                    'route' => '/blog',
+                    'route' => '/blog[/]',
                     'defaults' => array(
                         'controller' => 'Blog\Controller\Blog',
                         'action' => 'index',

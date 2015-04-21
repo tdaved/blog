@@ -1,10 +1,12 @@
-<h1><?= $post->getTitle(); ?></h1>
+<div class="blog-header">
+    <h1 class="blog-title"><?= $post->getTitle(); ?></h1>
+    <p class="small blog-description"><?= $post->getDate()->format('Y.m.d. H:i'); ?></p>
+</div>
 
-<article id="post-<?= $post->getId() ?>" class="panel panel-default">
-    <div class="panel-body">
+<div class="row blog-main">
+    
+    <article id="post-<?= $post->getId() ?>" class="blog-post">
         <p><?= $post->getContent() ?></p>
-    </div>
-    <div class="panel-footer">
-        <span><strong>Published:</strong> <?= $post->getDate()->format('Y.m.d. H:i'); ?></span>
-    </div>
-</article>
+    </article>
+    
+</div>

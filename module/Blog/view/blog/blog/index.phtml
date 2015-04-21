@@ -1,16 +1,23 @@
-<h1>Blog</h1>
+<div class="blog-header">
+    <h1 class="blog-title">Welcome to my Blog</h1>
+    <p class="lead blog-description">This is a web application built with Zend Framework 2 and Doctrine as ORM. You can post, edit or delete articles, or just leave us a reply for them as a comment.</p>
+</div>
 
-<?php foreach ($this->posts as $key => $post) : ?>
-<article id="post-<?= $post->getId() ?>" class="panel panel-default">
-    <div class="panel-heading">
-        <strong><?= $post->getTitle() ?></strong>
-    </div>
-    <div class="panel-body">
+<div class="row blog-main">
+
+    <?php foreach ($this->posts as $key => $post) : ?>
+
+    <article id="post-<?= $post->getId() ?>" class="blog-post">
+        <h2 class="blog-post-title"><?= $post->getTitle() ?></h2>
+        <p class="blog-post-meta"><?= $post->getDate()->format('Y.m.d. H:i'); ?></p>
+
         <p><?= $post->getContent() ?></p>
-    </div>
-    <div class="panel-footer clearfix">
-        <div class="pull-left"><strong>Published:</strong> <?= $post->getDate()->format('Y.m.d. H:i'); ?></div>
-        <div class="pull-right"><a href="<?php echo $this->basePath() . '/blog/' . $post->getId(); ?>">View</a></div>
-    </div>
-</article>
-<?php endforeach; ?>
+
+        <div class="btn btn-default">
+            <a href="<?php echo $this->basePath('blog/' . $post->getId()); ?>">View full post</a>
+        </div>
+    </article>
+
+    <?php endforeach; ?>
+
+</div>
