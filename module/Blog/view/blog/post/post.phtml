@@ -7,6 +7,7 @@
     
     <article id="post-<?= $post->getId() ?>" class="blog-post">
         <p><?= $post->getContent() ?></p>
+        <p><a class="btn btn-success" href="<?php echo $this->url('blog', array('action' => $post->getId(), 'id' => 'edit')); ?>">Edit post</a></p>
     </article>
     
 </div>
