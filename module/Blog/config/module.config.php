@@ -37,7 +37,7 @@ return array(
             'post' => array(
                 'type' => 'segment',
                 'options' => array(
-                    'route' => '/blog/:id',
+                    'route' => '/blog/:id[/]',
                     'constraints' => array(
                         'id' => '[0-9]+'
                     ),
@@ -49,9 +49,9 @@ return array(
                 'may_terminate' => true,
                 'child_routes' => array(
                     'edit' => array(
-                        'type' => 'literal',
+                        'type' => 'segment',
                         'options' => array(
-                            'route' => '/edit',
+                            'route' => 'edit[/]',
                             'defaults' => array(
                                 'controller' => 'Blog\Controller\Post',
                                 'action' => 'edit',
@@ -66,7 +66,8 @@ return array(
                     'route' => '/blog/create',
                     'defaults' => array(
                         'controller' => 'Blog\Controller\Post',
-                        'action' => 'create',
+                        'action' => 'edit',
+                        'id' => 'new'
                     )
                 )
             )

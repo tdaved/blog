@@ -195,3 +195,7 @@ a:hover {
   bottom: 11px;
   right: 10px;
 }
+
+form#edit input {
+  display: block;
+}

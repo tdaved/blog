@@ -2,7 +2,6 @@
 
 <?php
     $form = $this->form;
-    if(!$form) die('Form: ' . var_dump($form));
     $form->prepare();
 
     echo $this->form()->openTag($form);
