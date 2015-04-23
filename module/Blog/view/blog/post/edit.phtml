@@ -1,1 +1,12 @@
-<h1>Post::editAction</h1>
+<h1></h1>
+
+<?php
+    $form = $this->form;
+    $form->prepare();
+
+    echo $this->form()->openTag($form);
+    echo $this->formRow($form->get('post-title'));
+    echo $this->formRow($form->get('post-text'));
+    echo $this->formSubmit($form->get('post-submit'));
+    echo $this->form()->closeTag();
+ ?>
