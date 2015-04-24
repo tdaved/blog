@@ -25,25 +25,25 @@ return array(
     'router' => array(
         'routes' => array(
             'blog' => array(
-                'type' => 'segment',
+                'type' => 'literal',
                 'options' => array(
-                    'route' => '/blog[/]',
+                    'route' => '/',
                     'defaults' => array(
                         'controller' => 'Blog\Controller\Blog',
                         'action' => 'index',
                     )
                 )
             ),
-            'post' => array(
+            'posts' => array(
                 'type' => 'segment',
                 'options' => array(
-                    'route' => '/blog/:id[/]',
+                    'route' => '/:id[/]',
                     'constraints' => array(
                         'id' => '[0-9]+'
                     ),
                     'defaults' => array(
                         'controller' => 'Blog\Controller\Post',
-                        'action' => 'post'
+                        'action' => 'index'
                     )
                 ),
                 'may_terminate' => true,
@@ -60,14 +60,13 @@ return array(
                     )
                 )
             ),
-            'create' => array(
-                'type' => 'literal',
+            'add' => array(
+                'type' => 'segment',
                 'options' => array(
-                    'route' => '/blog/create',
+                    'route' => '/add[/]',
                     'defaults' => array(
                         'controller' => 'Blog\Controller\Post',
-                        'action' => 'edit',
-                        'id' => 'new'
+                        'action' => 'add'
                     )
                 )
             )

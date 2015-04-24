@@ -20,7 +20,8 @@ class BlogForm extends Form {
             'type' => 'Zend\Form\Element\Text',
             'attributes' => array(
                 'placeholder' => 'Title',
-                'class' => 'post-title'
+                'class' => 'post-title',
+                'autocomplete' => 'off'
             ),
         ));
         
@@ -28,7 +29,7 @@ class BlogForm extends Form {
             'name' => 'post-text',
             'type' => 'Zend\Form\Element\Textarea',
             'attributes' => array(
-                'placeholder' => 'Text',
+                'placeholder' => 'Just start typing...',
                 'class' => 'post-text'
             ),
         ));
@@ -38,7 +39,7 @@ class BlogForm extends Form {
             'type' => 'Zend\Form\Element\Submit',
             'attributes' => array(
                 'value' => 'Apply',
-                'class' => 'post-submit'
+                'class' => 'btn btn-primary post-submit'
             )
         ));
         

@@ -1,0 +1,13 @@
+<div class="row post-header">
+    <h1 class="blog-post-title"><?= $post->getTitle(); ?></h1>
+    <p class="blog-post-description"><?= $post->getDate()->format('Y.m.d. H:i'); ?></p>
+</div>
+
+<div class="row blog-main">
+    
+    <article id="post-<?= $post->getId() ?>" class="blog-post">
+        <p><?= $post->getContent() ?></p>
+        <p><a class="btn btn-primary" href="<?php echo $this->basePath($post->getId() . '/edit'); ?>">Edit post</a></p>
+    </article>
+    
+</div>

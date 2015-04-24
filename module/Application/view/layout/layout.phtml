@@ -11,8 +11,8 @@
 
     <!-- Le styles -->
     <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
-        ->prependStylesheet($this->basePath('css/bootstrap.min.css'))
-        ->prependStylesheet($this->basePath('css/style.css')) ?>
+        ->prependStylesheet($this->basePath('css/style.css'))
+        ->prependStylesheet($this->basePath('css/bootstrap.min.css')) ?>
 
     <!-- Scripts -->
     <?php echo $this->headScript()
@@ -27,9 +27,9 @@
 
     <div class="blog-masthead">
         <div class="container">
-            <nav class="blog-nav" role="navigation">
-                <a class="blog-nav-item" href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a>
-                <a class="blog-nav-item" href="<?php echo $this->basePath('/blog'); ?>"><?php echo $this->translate('Blog') ?></a>
+            <nav class="row blog-nav" role="navigation">
+                <a class="blog-nav-item" href="<?php echo $this->url('blog') ?>"><?php echo $this->translate('Home') ?></a>
+                <a class="blog-nav-item" href="<?php echo $this->basePath('add'); ?>">Add new post</a>
             </nav>
         </div>
     </div>

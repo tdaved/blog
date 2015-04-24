@@ -2,6 +2,7 @@
 
 namespace Blog\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,11 +37,11 @@ class Posts
     private $content;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      *
-     * @ORM\Column(name="date", type="datetime", nullable=false)
+     * @ORM\Column(name="date", type="datetime", nullable=false, columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
      */
-    private $date = 'CURRENT_TIMESTAMP';
+    private $date;
 
 
 
@@ -105,11 +106,11 @@ class Posts
     /**
      * Set date
      *
-     * @param \DateTime $date
+     * @param DateTime $date
      *
      * @return Posts
      */
-    public function setDate($date)
+    public function setDate(DateTime $date)
     {
         $this->date = $date;
 
@@ -119,10 +120,21 @@ class Posts
     /**
      * Get date
      *
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDate()
     {
         return $this->date;
+    }
+    
+    /**
+     * Populate from an array.
+     *
+     * @param array $data
+     */
+    public function exchangeArray($data = array()) 
+    {
+        $this->title = $data['post-title'];
+        $this->content = $data['post-text'];
     }
 }

@@ -2,10 +2,10 @@
 
 namespace Blog\Controller;
 
+use Blog\Entity\Posts;
 use Blog\Form\BlogForm;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use Doctrine\ORM\EntityManager;
 
 /**
  * @author David
@@ -21,20 +21,44 @@ class PostController extends AbstractActionController {
         return $this->em;
     }
     
-    public function editAction() {
+    public function indexAction() {
+        return new ViewModel(array(
+            'post' => $this->getEntityManager()->getRepository('Blog\Entity\Posts')->find($this->params('id')),
+        ));
+    }
+    
+    public function addAction() {
         $form = new BlogForm();
-        $form->get('post-submit')->setValue('Edit');
+        $form->get('post-submit')->setValue('Save changes');
         $request = $this->getRequest();
         $prg = $this->prg();
-        //$em = $this->getEntityManager();
+        
+        if($prg === false) {
+            return array('form' => $form);
+        } elseif($request->isPost()) {
+            $post = new Posts();
+            $this->getEntityManager();
+            $post->exchangeArray($request->getPost());
+            $this->em->persist($post);
+            $this->em->flush();
+            
+            $this->redirect()->toRoute('blog');
+            return $prg;
+        } elseif($request->isGet()) {
+            return array('form' => $form);
+        }
+    }
+    
+    public function editAction() {
+        $form = new BlogForm();
+        $form->get('post-submit')->setValue('Save changes');
+        $request = $this->getRequest();
+        $prg = $this->prg();
         
         if($prg === false) {
             return array('form' => $form);
         } elseif($request->isPost()) {
             $data = $this->getEntityManager()->getRepository('Blog\Entity\Posts')->find($this->params('id'));
-            
-            $data->setTitle($title);
-            $data->setContent($text);
             
             return $prg;
         } elseif($request->isGet()) {
@@ -42,10 +66,8 @@ class PostController extends AbstractActionController {
         }
     }
     
-    public function postAction() {
-        return new ViewModel(array(
-            'post' => $this->getEntityManager()->getRepository('Blog\Entity\Posts')->find($this->params('id')),
-        ));
+    public function deleteAction() {
+        
     }
     
 }
