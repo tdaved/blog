@@ -11,7 +11,8 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Blog\Controller\Blog' => 'Blog\Controller\BlogController',
-            'Blog\Controller\Post' => 'Blog\Controller\PostController'
+            'Blog\Controller\Post' => 'Blog\Controller\PostController',
+            'Blog\Controller\Comment' => 'Blog\Controller\CommentController',
         ),
         'initializers' => array(
             'PostServiceInit' => 'Blog\Service\PostServiceInitializer'
@@ -34,7 +35,7 @@ return array(
                     )
                 )
             ),
-            'posts' => array(
+            'post' => array(
                 'type' => 'segment',
                 'options' => array(
                     'route' => '/:id[/]',
@@ -67,6 +68,34 @@ return array(
                     'defaults' => array(
                         'controller' => 'Blog\Controller\Post',
                         'action' => 'add'
+                    )
+                )
+            ),
+            'delete' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/:id/delete[/]',
+                    'constraints' => array(
+                        'id' => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Blog\Controller\Post',
+                        'action' => 'delete',
+                        'id' => '0'
+                    )
+                )
+            ),
+            'comments' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/:id/comments[/]',
+                    'constraints' => array(
+                        'id' => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Blog\Controller\Post',
+                        'action' => 'delete',
+                        'id' => '0'
                     )
                 )
             )

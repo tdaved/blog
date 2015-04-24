@@ -29,7 +29,7 @@ class BlogForm extends Form {
             'name' => 'post-text',
             'type' => 'Zend\Form\Element\Textarea',
             'attributes' => array(
-                'placeholder' => 'Just start typing...',
+                'placeholder' => 'What\'s on your mind?',
                 'class' => 'post-text'
             ),
         ));

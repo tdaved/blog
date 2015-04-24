@@ -26,7 +26,7 @@ class Comments
      *
      * @ORM\Column(name="date", type="datetime", nullable=false)
      */
-    private $date = 'CURRENT_TIMESTAMP';
+    private $date;
 
     /**
      * @var string

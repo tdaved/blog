@@ -1,7 +1,7 @@
 <div class="row blog-header">
     <h1 class="blog-title">Welcome to my Blog</h1>
     <p class="lead blog-description">This is a web application built with Zend Framework 2 and Doctrine as ORM. You can post, edit or delete articles, or just leave us a reply for them as a comment.</p>
-    <p><a class="btn btn-primary" href="<?php echo $this->basePath('/add'); ?>">Add new post</a></p>
+    <p><a class="btn btn-success" href="<?php echo $this->url('add'); ?>">Add new post</a></p>
 </div>
 
 <div class="row blog-main">
@@ -14,7 +14,8 @@
 
         <p><?= $post->getContent() ?></p>
 
-        <a class="btn btn-primary" href="<?php echo $this->basePath($post->getId()); ?>">View full post</a>
+        <a class="btn btn-primary" href="<?php echo $this->url('post', array('id' => $post->getId())); ?>">View full post</a>
+        <a class="btn btn-danger" href="<?php echo $this->url('delete', array('action' => 'delete', 'id' => $post->getId())); ?>">Delete post</a>
     </article>
 
     <?php endforeach; ?>

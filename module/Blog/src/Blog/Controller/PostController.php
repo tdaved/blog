@@ -29,7 +29,7 @@ class PostController extends AbstractActionController {
     
     public function addAction() {
         $form = new BlogForm();
-        $form->get('post-submit')->setValue('Save changes');
+        $form->get('post-submit')->setValue('Add post');
         $request = $this->getRequest();
         $prg = $this->prg();
         
@@ -38,6 +38,7 @@ class PostController extends AbstractActionController {
         } elseif($request->isPost()) {
             $post = new Posts();
             $this->getEntityManager();
+            
             $post->exchangeArray($request->getPost());
             $this->em->persist($post);
             $this->em->flush();
@@ -58,8 +59,13 @@ class PostController extends AbstractActionController {
         if($prg === false) {
             return array('form' => $form);
         } elseif($request->isPost()) {
-            $data = $this->getEntityManager()->getRepository('Blog\Entity\Posts')->find($this->params('id'));
+            $post = $this->getEntityManager()->getRepository('Blog\Entity\Posts')->find($this->params('id'));
             
+            $post->exchangeArray($request->getPost());
+            $this->em->persist($post);
+            $this->em->flush();
+            
+            $this->redirect()->toRoute('blog');
             return $prg;
         } elseif($request->isGet()) {
             return array('form' => $form);
@@ -67,7 +73,22 @@ class PostController extends AbstractActionController {
     }
     
     public function deleteAction() {
+        $post = $this->getEntityManager()->getRepository('Blog\Entity\Posts')->find($this->params('id'));
+        $request = $this->getRequest();
+        $prg = $this->prg();
         
+        if($prg === false) {
+            return array('post' => $post);
+        } elseif($request->isPost()) {
+            $del = $request->getPost('del', 'No');
+            if ($del == 'Yes') {
+                $this->getEntityManager()->remove($post);
+                $this->getEntityManager()->flush();
+            }
+            $this->redirect()->toRoute('blog');
+        }
+        
+        return array('post' => $post);
     }
     
 }

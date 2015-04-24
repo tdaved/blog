@@ -1,4 +1,5 @@
 <?php
+
 namespace Blog\Controller;
 
 use Blog\Service\PostServiceAwareInterface;
@@ -18,9 +19,9 @@ class BlogController extends AbstractActionController implements PostServiceAwar
 
     public function indexAction() {
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-        $data = $em->getRepository('Blog\Entity\Posts')->findAll();
+        $posts = $em->getRepository('Blog\Entity\Posts')->findAll();
         return new ViewModel(array(
-            'posts' => $data
+            'posts' => $posts,
         ));
     }
 
