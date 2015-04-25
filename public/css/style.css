@@ -252,6 +252,22 @@ form#edit textarea {
   font-size: 22px;
 }
 
+header#comments + form#edit {
+  margin-top: 10px;
+}
+
+header#comments + form#edit textarea {
+  min-height: 6em;
+}
+
+header#comments + form#edit textarea:focus {
+  background-color: #f6f6f6;
+}
+
 form#edit input.post-submit {
   margin-bottom: 60px;
+}
+
+article.comment {
+  margin-bottom: 20px;
 }

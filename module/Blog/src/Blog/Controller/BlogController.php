@@ -1,43 +1,27 @@
 <?php
-
 namespace Blog\Controller;
 
-use Blog\Service\PostServiceAwareInterface;
-use Blog\Service\PostServiceInterface;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use Blog\Service\EntityManagerAwareInterface;
+use Blog\Service\EntityManagerAwareTrait;
 
 /**
  *
  * @author David
  */
-class BlogController extends AbstractActionController implements PostServiceAwareInterface {
-    /**
-     * @var PostServiceInterface
-     */
-    protected $postService;
+class BlogController extends AbstractActionController implements EntityManagerAwareInterface
+{
+    use EntityManagerAwareTrait;
 
-    public function indexAction() {
-        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-        $posts = $em->getRepository('Blog\Entity\Posts')->findAll();
-        return new ViewModel(array(
-            'posts' => $posts,
+    public function indexAction()
+    {
+        $em = $this->getEntityManager();
+        $posts = $em->getRepository('Blog\Entity\Posts')->findBy(array(), array(
+            'date' => 'DESC'
         ));
-    }
-
-    /**
-     * @see \Blog\Service\PostServiceAwareInterface::getPostService()
-     * @return PostServiceInterface
-     */
-    public function getPostService() {
-        return $this->postService;
-    }
-
-    /**
-     * @see \Blog\Service\PostServiceAwareInterface::setPostService()
-     * @param PostServiceInterface $service
-     */
-    public function setPostService(PostServiceInterface $service) {
-        $this->postService = $service;
+        return new ViewModel(array(
+            'posts' => $posts
+        ));
     }
 }

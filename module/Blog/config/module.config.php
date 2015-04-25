@@ -1,25 +1,20 @@
 <?php
-
 namespace Blog;
 
 return array(
-    'service_manager' => array(
-        'invokables' => array(
-            'Blog\Service\PostServiceInterface' => 'Blog\Service\PostService'
-        )
-    ),
     'controllers' => array(
         'invokables' => array(
             'Blog\Controller\Blog' => 'Blog\Controller\BlogController',
             'Blog\Controller\Post' => 'Blog\Controller\PostController',
+            'Blog\Controller\Comment' => 'Blog\Controller\CommentController',
         ),
         'initializers' => array(
-            'PostServiceInit' => 'Blog\Service\PostServiceInitializer'
+            'EntityManager' => 'Blog\Service\EntityManagerInitializer'
         )
     ),
     'view_manager' => array(
         'template_path_stack' => array(
-            __DIR__ . '/../view',
+            __DIR__ . '/../view'
         )
     ),
     'router' => array(
@@ -30,7 +25,7 @@ return array(
                     'route' => '/',
                     'defaults' => array(
                         'controller' => 'Blog\Controller\Blog',
-                        'action' => 'index',
+                        'action' => 'index'
                     )
                 )
             ),
@@ -54,7 +49,18 @@ return array(
                             'route' => 'edit[/]',
                             'defaults' => array(
                                 'controller' => 'Blog\Controller\Post',
-                                'action' => 'edit',
+                                'action' => 'edit'
+                            )
+                        )
+                    ),
+                    'comment' => array(
+                        'type' => 'segment',
+                        'options' => array(
+                            'verb' => 'post',
+                            'route' => 'comment',
+                            'defaults' => array(
+                                'controller' => 'Blog\Controller\Comment',
+                                'action' => 'add'
                             )
                         )
                     )
@@ -66,7 +72,8 @@ return array(
                     'route' => '/add[/]',
                     'defaults' => array(
                         'controller' => 'Blog\Controller\Post',
-                        'action' => 'add'
+                        'action' => 'edit',
+                        'id' => '0'
                     )
                 )
             ),
@@ -75,7 +82,7 @@ return array(
                 'options' => array(
                     'route' => '/:id/delete[/]',
                     'constraints' => array(
-                        'id' => '[0-9]+',
+                        'id' => '[0-9]+'
                     ),
                     'defaults' => array(
                         'controller' => 'Blog\Controller\Post',
@@ -91,7 +98,9 @@ return array(
             __NAMESPACE__ . '_driver' => array(
                 'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
                 'cache' => 'array',
-                'paths' => array(__DIR__ . '/../src/' . __NAMESPACE__ . '/Entity')
+                'paths' => array(
+                    __DIR__ . '/../src/' . __NAMESPACE__ . '/Entity'
+                )
             ),
             'orm_default' => array(
                 'drivers' => array(
@@ -99,5 +108,6 @@ return array(
                 )
             )
         )
-    ),
+    )
+    
 );

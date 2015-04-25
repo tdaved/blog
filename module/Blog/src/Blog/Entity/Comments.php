@@ -24,7 +24,7 @@ class Comments
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="datetime", nullable=false)
+     * @ORM\Column(name="date", type="datetime", nullable=false, columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
      */
     private $date;
 
@@ -128,4 +128,18 @@ class Comments
     {
         return $this->post;
     }
+    
+    /**
+     * Populate from an array.
+     *
+     * @param array $data
+     */
+    public function exchangeArray($data = array())
+    {
+        foreach($data as $key => $value){
+            $this->$key = $value;
+        }
+    }
+    
+    
 }

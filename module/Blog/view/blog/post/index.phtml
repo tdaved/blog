@@ -1,3 +1,5 @@
+<?php use Blog\Entity\Comments; ?>
+
 <div class="row post-header">
     <h1 class="blog-post-title"><?= $post->getTitle(); ?></h1>
     <p class="blog-post-description"><?= $post->getDate()->format('Y.m.d. H:i'); ?></p>
@@ -6,8 +8,33 @@
 <div class="row blog-main">
     
     <article id="post-<?= $post->getId() ?>" class="blog-post">
-        <p><?= $post->getContent() ?></p>
-        <p><a class="btn btn-primary" href="<?php echo $this->basePath($post->getId() . '/edit'); ?>">Edit post</a></p>
+        <p><?= $post->getContent(); ?></p>
+        <p><a class="btn btn-primary" href="<?php echo $this->url('post/edit', array(), array(), true); //$this->basePath($post->getId() . '/edit'); ?>">Edit post</a></p>
     </article>
+    <section>
+        
+    <header id="comments">
+        <h2>Comments</h2>
+    </header>
+        
+    <?php
+    $form = $this->form;
+    $form->prepare();
+    
+    echo $this->form()->openTag($form);
+    echo $this->formTextarea($form->get('content'));
+    echo $this->formSubmit($form->get('submit'));
+    echo $this->form()->closeTag();
+ 
+    /* @var $comment Comments */
+    foreach($this->comments as $comment) : ?>
+        <article class="comment">
+            <header>
+                <time><strong>Posted at <?= $this->dateFormat($comment->getDate()); ?></strong></time>
+            </header>
+            <?=$comment->getContent()?>
+        </article>
+    <?php endforeach;?>
+    </section>
     
 </div>
